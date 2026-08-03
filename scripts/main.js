@@ -2955,7 +2955,9 @@ define("guiprocessmanager", ["require", "exports", "colorreductionmanagement", "
                         pattern.setAttribute("width", patternTileSize + "");
                         pattern.setAttribute("height", patternTileSize + "");
                         const img = document.createElementNS(xmlns, "image");
-                        img.setAttributeNS("http://www.w3.org/1999/xlink", "href", window.HATCH_TILES["level" + level]);
+                        // Note: only plain "href" is used (not xlink:href) -- SVG2 supports
+                        // plain href on <image>, and adding xlink:href without declaring the
+                        // xlink namespace on the root <svg> breaks standalone exported files.
                         img.setAttribute("href", window.HATCH_TILES["level" + level]);
                         img.setAttribute("x", "0");
                         img.setAttribute("y", "0");
